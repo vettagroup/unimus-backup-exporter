@@ -185,10 +185,12 @@ function pushToGit(){
 		git push >> $log
 		errorCheck "$?" 'Failed to push to git'
 	else
+		git pull
+		errorCheck "$?" 'Failed to pull from backups git repo'
 		git add --all
 		git commit -m "Unimus Git Extractor $(date +'%b-%d-%y %H:%M')"
 		git push
-		errorCheck "$?" 'Failed to push to git'
+		errorCheck "$?" 'Failed to push to backups git repo'
 	fi
 	cd $script_dir
 }

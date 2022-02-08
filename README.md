@@ -8,6 +8,21 @@ The only requirements for this script are `bash`, `curl`, `jq`, and `base64`.
 
 ## _How to use the Exporter_ 
 
+Browse to your Unimus directory. This is normally at /opt/unimus. Clone the unimus-backup-exporter repo to a folder called unimus-backup-exporter.
+
+``` bash
+cd /opt/unimus
+git clone https://path.to.repo/group/repo.git unimus-backup-exporter
+```
+
+If you haven't already, create a git repo to store and track your backups.
+
+Browse to the unimus-backup-exporter directory, and clone your backups repo into a folder called backups.
+
+``` bash
+git clone https://path.to.repo/group/repo.git backups
+```
+
 To configure, make and complete the environment file.
 
 ``` bash
