@@ -30,6 +30,12 @@ cp unimus-backup-exporter.example.env unimus-backup-exporter.env
 vi unimus-backup-exporter.env
 ```
 
+Add the cron to /etc/crontab. Example is 6am.
+
+```
+0 6 * * * root /opt/unimus/unimus-backup-exporter/unimus-backup-exporter.sh >/dev/null 2>&1
+```
+
 To use the exporter, you must configure the scripts env file with your settings. The script can extract all backups, or just the latest backups depending on configuration. 
 
 If you are using this script to push backups to git, it will create a local git directory based on the settings in your env file, and then push backups to that repo.
