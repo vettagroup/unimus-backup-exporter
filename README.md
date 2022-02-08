@@ -8,6 +8,13 @@ The only requirements for this script are `bash`, `curl`, `jq`, and `base64`.
 
 ## _How to use the Exporter_ 
 
+To configure, make and complete the environment file.
+
+``` bash
+cp unimus-backup-exporter.example.env unimus-backup-exporter.env
+vi unimus-backup-exporter.env
+```
+
 To use the exporter, you must configure the scripts env file with your settings. The script can extract all backups, or just the latest backups depending on configuration. 
 
 If you are using this script to push backups to git, it will create a local git directory based on the settings in your env file, and then push backups to that repo.

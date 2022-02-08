@@ -101,13 +101,7 @@ function saveBackup(){
 	elif [ $4 == 'BINARY' ]; then
 		local type ='bin'
 	fi
-	if ! [ -d "$backup_dir/$address - $1" ]; then
-		mkdir "$backup_dir/$address - $1"
-		errorCheck "$?" 'Failed to create device folder'
-	fi
-	if ! [ -e "$backup_dir/$address - $1/Backup $address $2 $1.$type" ]; then
-		base64 -d <<< $3 > "$backup_dir/$address - $1/Backup $address $2 $1.$type"
-	fi
+	base64 -d <<< $3 > "$backup_dir/$address - $1.$type"
 }
 
 
@@ -197,19 +191,19 @@ function pushToGit(){
 			ssh)
 			ssh-keyscan -H git_server_address >> ~/.ssh/known_hosts
 			if [ -z "$git_password" ]; then
-				git remote add orgin ssh://$git_username@$git_server_address/$git_repo_name
+				git remote add origin ssh://$git_username@$git_server_address/$git_repo_name
 				errorCheck "$?" 'Failed to add git repo'
 			else
-				git remote add orgin ssh://$git_username:$git_password@$git_server_address/$git_repo_name
+				git remote add origin ssh://$git_username:$git_password@$git_server_address/$git_repo_name
 				errorCheck "$?" 'Failed to add git repo'
 			fi
 			;;
 			http)
-			git remote add orgin http://$git_username:$git_password@$git_server_address:$git_port/$git_repo_name
+			git remote add origin http://$git_username:$git_password@$git_server_address:$git_port/$git_repo_name
 			errorCheck "$?" 'Failed to add git repo'
 			;;
 			https)
-			git remote add orgin https://$git_username:$git_password@$git_server_address:$git_port/$git_repo_name
+			git remote add origin https://$git_username:$git_password@$git_server_address:$git_port/$git_repo_name
 			errorCheck "$?" 'Failed to add git repo'
 			;;
 			*)
@@ -217,7 +211,7 @@ function pushToGit(){
 			exit 2
 			;;
 		esac
-		git push -u orgin $git_branch >> $log
+		git push -u origin $git_branch >> $log
 		errorCheck "$?" 'Failed to add branch'
 		git push >> $log
 		errorCheck "$?" 'Failed to push to git'
