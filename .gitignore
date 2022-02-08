@@ -37,3 +37,4 @@ ehthumbs.db
 Thumbs.db
 
 **/backups/
+unimus-backup-exporter.env
