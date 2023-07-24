@@ -160,10 +160,10 @@ function pushToGit(){
 			ssh)
 			ssh-keyscan -H git_server_address >> ~/.ssh/known_hosts
 			if [ -z "$git_password" ]; then
-				git remote add origin ssh://$git_username@$git_server_address/$git_repo_name
+				git remote add origin ssh://$git_username@$git_server_address:$git_port/$git_repo_name
 				errorCheck "$?" 'Failed to add git repo'
 			else
-				git remote add origin ssh://$git_username:$git_password@$git_server_address/$git_repo_name
+				git remote add origin ssh://$git_username:$git_password@$git_server_address:$git_port/$git_repo_name
 				errorCheck "$?" 'Failed to add git repo'
 			fi
 			;;
